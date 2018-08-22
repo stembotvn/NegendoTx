@@ -1,8 +1,8 @@
-#include <TransmitterRF24.h>
+#include <NegendoTx.h>
 #include <SPI.h>
 #include "RF24.h"
 
-TransmitterRF24 Negendo;
+NegendoTx Negendo;
 RF24 radio(CE_PIN, CSN_PIN);
 int Data[8];
 int old_Data[8];

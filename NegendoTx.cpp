@@ -7,7 +7,7 @@ void NegendoTx::init()
 	Serial.begin(9600);
 	randomSeed(analogRead(A7));
 
-	pinMode(SET, OUTPUT);
+	pinMode(SET, INPUT);
 	pinMode(BF, INPUT);
 	pinMode(BB, INPUT);
 	pinMode(BR, INPUT);
@@ -43,7 +43,7 @@ void NegendoTx::setAddress()
 		_duration = millis() - _startTime;
 		if(_duration > 5000)
 		{
-			//Serial.println("Ready to send new address");
+			Serial.println("Ready to send new address");
 			_address = random(2,255);
 			EEPROM.write(0,_address);
 			_Add[0] = _address;
@@ -51,13 +51,11 @@ void NegendoTx::setAddress()
 			radio.write(_Add, sizeof(_Add));
 			Serial.println("Set address done.");
 			convertAdd();
-			tick(3,1000,100);
 			blinks(3,100);
 			delay(1000);
 		}
 		else
 		{
-			tick(2,1000,400);
 			blinks(2,400);
 		}
 	}

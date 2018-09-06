@@ -11,7 +11,7 @@
   #include "WProgram.h"
 #endif
 
-#define CE_PIN   A2
+#define CE_PIN	A2
 #define CSN_PIN A3
 
 #define SET 2

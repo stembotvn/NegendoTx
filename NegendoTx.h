@@ -14,14 +14,16 @@
 #define CE_PIN	A2
 #define CSN_PIN A3
 
-#define SET 2
-#define BF  3
+#define SET 3
+
+#define BF  2
 #define BB  4
 #define BR  5
 #define BL  6
 #define BLed  7
 #define BX  8
 #define BSP 9
+#define BY 10
 #define Speed A0
 #define buzzer A1
 #define Led 13
@@ -35,8 +37,6 @@ public:
 	void convertAdd();
 	void setAddress();
 	void blinks(int n, int times);
-	void tone(uint16_t frequency, uint32_t duration);
-	void tick(int n, uint16_t frequency, int times);
 private:
 	const uint64_t _AddDefault = 0xF0F0F0F001LL;
 	uint64_t _AddRandom;

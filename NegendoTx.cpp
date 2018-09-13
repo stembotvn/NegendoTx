@@ -14,6 +14,7 @@ void NegendoTx::init()
 	pinMode(BL, INPUT);
 	pinMode(BLed, INPUT);
 	pinMode(BX, INPUT);
+	pinMode(BY, INPUT);
 	pinMode(BSP, INPUT);
 	pinMode(Led,OUTPUT);
 
@@ -67,27 +68,6 @@ void NegendoTx::blinks(int n, int times)
 		digitalWrite(Led, HIGH);
 		delay(times);
 		digitalWrite(Led, LOW);
-		delay(times);
-	}
-}
-void NegendoTx::tone(uint16_t frequency, uint32_t duration)
-{
-  int period = 1000000L / frequency;
-  int pulse = period / 2;
-  for (long i = 0; i < duration * 1000L; i += period)
-  {
-    digitalWrite(buzzer, HIGH);
-    delayMicroseconds(pulse);
-    digitalWrite(buzzer, LOW);
-    delayMicroseconds(pulse);
-  }
-}
-void NegendoTx::tick(int n, uint16_t frequency, int times)
-{
-	for(int i=0; i<n; i++)
-	{
-		tone(frequency, times);
-		digitalWrite(buzzer, LOW);
 		delay(times);
 	}
 }

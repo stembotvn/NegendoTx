@@ -37,6 +37,7 @@ public:
 	void convertAdd();
 	void setAddress();
 	void blinks(int n, int times);
+	RF24 radio= RF24(CE_PIN, CSN_PIN);
 private:
 	const uint64_t _AddDefault = 0xF0F0F0F001LL;
 	uint64_t _AddRandom;
@@ -45,8 +46,6 @@ private:
 	int _Pot;
 	int _Add[1];
 	long _duration;
-	long _startTime;
-
-	RF24 radio= RF24(CE_PIN, CSN_PIN);
+	long _startTime;	
 };
 #endif 

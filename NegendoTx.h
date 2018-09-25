@@ -18,15 +18,13 @@
 
 #define BF  2
 #define BB  4
-#define BR  5
-#define BL  6
+#define BL  5
+#define BR  6
 #define BLed  7
 #define BX  8
 #define BSP 9
 #define BY 10
 #define Speed A0
-#define buzzer A1
-#define Led 13
 
 class NegendoTx
 {
@@ -36,7 +34,7 @@ public:
 	void init();
 	void convertAdd();
 	void setAddress();
-	void blinks(int n, int times);
+
 	RF24 radio= RF24(CE_PIN, CSN_PIN);
 private:
 	const uint64_t _AddDefault = 0xF0F0F0F001LL;
@@ -46,6 +44,6 @@ private:
 	int _Pot;
 	int _Add[1];
 	long _duration;
-	long _startTime;	
+	long _startTime;
 };
 #endif 

@@ -16,7 +16,6 @@ void NegendoTx::init()
 	pinMode(BX, INPUT);
 	pinMode(BY, INPUT);
 	pinMode(BSP, INPUT);
-	pinMode(Led,OUTPUT);
 
 	radio.begin();
 	radio.setChannel(108);
@@ -40,34 +39,19 @@ void NegendoTx::setAddress()
 		Serial.println("Set Address");
 		Serial.println("Wait 5s...");
 		_startTime = millis();
-		while(!digitalRead(SET));
-		_duration = millis() - _startTime;
-		if(_duration > 5000)
+		while(!digitalRead(SET))
 		{
-			Serial.println("Ready to send new address");
-			_address = random(2,255);
-			EEPROM.write(0,_address);
-			_Add[0] = _address;
-			radio.openWritingPipe(_AddDefault);
-			radio.write(_Add, sizeof(_Add));
-			Serial.println("Set address done.");
-			convertAdd();
-			blinks(3,100);
-			delay(1000);
+			if(millis() - _startTime == 5000)
+			{
+				Serial.println("Ready to send new address");
+				_address = random(2,255);
+				EEPROM.write(0,_address);
+				_Add[0] = _address;
+				radio.openWritingPipe(_AddDefault);
+				radio.write(_Add, sizeof(_Add));
+			}
 		}
-		else
-		{
-			blinks(2,400);
-		}
-	}
-}
-void NegendoTx::blinks(int n, int times)
-{
-	for(int i=0; i<n; i++)
-	{
-		digitalWrite(Led, HIGH);
-		delay(times);
-		digitalWrite(Led, LOW);
-		delay(times);
+		Serial.println("Set address done.");
+		convertAdd();
 	}
 }
